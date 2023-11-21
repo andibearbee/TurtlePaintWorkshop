@@ -17,7 +17,7 @@ public class MainApp {
     public static Point2D.Double location;
     public static Color color;
     public static int border;
-    public static double xCoordinate, yCoordinate, radius, length, width;
+    public static double xCoordinate, yCoordinate, radius, length, width, sideLength;
     public static String tempColor;
 
 
@@ -70,13 +70,14 @@ public class MainApp {
                 "S) Square\n" +
                 "C) Circle\n" +
                 "R) Rectangle\n" +
+                "T) Triangle\n" +
                 "H) Return to home");
         String shapeChoice = scanner.nextLine().toUpperCase();
 
         switch(shapeChoice) {
             case "S":
-                System.out.println("What color square will Scoot draw? " +
-                        "red, blue, green, magenta, or cyan\n");
+                System.out.println("What color square will Scoot draw?\n " +
+                        "Color Options: red, blue, green, magenta, or cyan\n");
                 tempColor = scanner.nextLine().toLowerCase();
                 System.out.println("What is the width of the square's border?\n");
                 border = scanner.nextInt();
@@ -96,8 +97,8 @@ public class MainApp {
                 break;
 
             case "C":
-                System.out.println("What color circle will Scoot draw? " +
-                        "red, blue, green, magenta, or cyan\n");
+                System.out.println("What color circle will Scoot draw?\n" +
+                        "Color Options: red, blue, green, magenta, or cyan\n");
 
                 tempColor = scanner.nextLine();
                 System.out.println("What is the width of the circle's border?\n");
@@ -124,8 +125,8 @@ public class MainApp {
                 break;
 
             case "R":
-                System.out.println("What color rectangle should Scoot draw?" +
-                        "red, blue, green, magenta, or cyan\n");
+                System.out.println("What color rectangle should Scoot draw?\n " +
+                        "Color Options: red, blue, green, magenta, or cyan\n");
                 tempColor = scanner.nextLine();
                 System.out.println("What is the width of the rectangle's border?\n");
                 border = scanner.nextInt();
@@ -150,6 +151,33 @@ public class MainApp {
 
                 break;
 
+            case "T":
+                System.out.println("What color triangle should Scoot draw?\n " +
+                        "Color Options: red, blue, green, magenta, or cyan\n");
+                tempColor = scanner.nextLine();
+                System.out.println("What is the width of the triangle's border?\n");
+                border = scanner.nextInt();
+                scanner.nextLine();
+                System.out.println("What is the length of the triangle's sides?\n");
+                sideLength = scanner.nextDouble();
+                System.out.println("What is the placement of the triangle on the canvas?\n" + "Enter X Coordinate: ");
+                xCoordinate = scanner.nextDouble();
+                System.out.println("Enter Y Coordinate: ");
+                yCoordinate = scanner.nextDouble();
+                scanner.nextLine();
+                location = new Point2D.Double(xCoordinate,yCoordinate);
+                color = parseColor(tempColor);
+
+                Triangle triangle = new Triangle (turtle,location,border,color, sideLength);
+                triangle.paint();
+                System.out.println("Scoot made a triangle!");
+                homeScreen();
+
+
+
+
+
+
             case "H":
                 homeScreen();
                 break;
@@ -161,12 +189,17 @@ public class MainApp {
 
 
     public static void  saveShape(){
+        String directoryPath = "Workshops/TurtlePaint/savedimages";
+        System.out.println("Enter the filename to save your drawing:\n" + " Hint: Make sure to add .png to end of your filename!");
+        String filename = scanner.nextLine();
 
-
-
-
+        world.saveAsPNG(directoryPath, filename);
+        System.out.println("Success! Your image was saved! Check it out under: Workshops/TurtlePaint/savedimages");
+        homeScreen();
     }
 }
+
+
 
   /* To make the X --> calculate the hypotenuse (diagonal)
          a2 + b2 = c2

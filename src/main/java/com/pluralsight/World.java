@@ -180,7 +180,7 @@ public class World extends JFrame {
      * @param filename The name of the file to write
      * @throws IllegalArgumentException if any parameter is null or if the filename is not an image filename
      */
-    public void saveAs(String filename) {
+    public void saveAsPNG(String directoryPath, String filename) {
         try {
             int dot = filename.lastIndexOf('.');
             if (dot < 0 || dot == filename.length()-1) {
