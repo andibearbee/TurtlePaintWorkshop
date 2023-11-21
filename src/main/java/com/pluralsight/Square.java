@@ -10,7 +10,17 @@ public class Square extends Shape{
 
     @Override
     public void paint() {
+        turtle.setColor(this.color);
+        turtle.setPenWidth(this.border);
+        turtle.penUp();
+        turtle.goTo(this.location);
+        turtle.penDown();
+        turtle.setDelay(1);
 
+        for (int i = 0; i < 4; i++) {
+            turtle.forward(200);
+            turtle.turnRight(90);
+        }
 
 
     }

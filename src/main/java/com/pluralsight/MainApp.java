@@ -96,7 +96,7 @@ public class MainApp {
                 break;
 
             case "C":
-                System.out.println("What color circle will Scoot draw? )" +
+                System.out.println("What color circle will Scoot draw? " +
                         "red, blue, green, magenta, or cyan\n");
 
                 tempColor = scanner.nextLine();
